@@ -1,7 +1,13 @@
 const container = document.getElementById("container");
+const resizeBtn = document.getElementById("resizeBtn");
 
-const gridSize = 16;
-const squareSize = 600 / gridSize;
+const containerSize = 600;
+
+function createGrid(gridSize){
+    container.innerHTML = "";
+
+    const squareSize = containerSize / gridSize
+
 
 for (let i = 0;  i < gridSize * gridSize; i++) {
     const square = document.createElement("div");
@@ -17,5 +23,20 @@ for (let i = 0;  i < gridSize * gridSize; i++) {
 
 
     container.appendChild(square);
+ }
 }
 
+createGrid(16);
+
+resizeBtn.addEventListener("click", () => {
+    let userInput = prompt("Enter number of squares per side (max 100):  ");
+
+    userInput = Number(userInput);
+
+    if (userInput > 0 && userInput < 100) {
+        createGrid(userInput);
+    }  else {
+        alert("Please enter a number between 1 and 100.");   
+    }
+    
+});
